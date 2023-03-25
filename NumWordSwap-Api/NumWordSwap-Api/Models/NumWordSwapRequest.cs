@@ -6,5 +6,6 @@ public class NumWordSwapRequest
 {
     public int MaxNumber{ get; set; }
     public List<NumWordSwap>? NumWordSwaps { get; set; }
+    public bool SortedOrder { get; set; }
 }
 

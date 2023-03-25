@@ -17,8 +17,8 @@ public class NumWordSwapController : ControllerBase
     }
 
     [HttpPost]
-    [Route("getnumwordswaps")]
-    public IEnumerable<NumWordSwap> GetNumWordSwaps(NumWordSwapRequest request)
+    [Route("getswappednumwords")]
+    public IEnumerable<NumWordSwap> GetSwappedNumWords(NumWordSwapRequest request)
     {
 
         // Null Request and Invalid Max Number validation
@@ -43,13 +43,16 @@ public class NumWordSwapController : ControllerBase
             for (var i = 1; i <= request.MaxNumber; i++)
             {
                 var wordSwapResult = new StringBuilder();
-                request.NumWordSwaps?.ForEach(nws =>
+                var numWordSwaps = !!request.SortedOrder ? request.NumWordSwaps?.OrderBy(nws => nws.Number).ToList() : request.NumWordSwaps;
+
+                numWordSwaps?.ForEach(nws =>
                 {
                     if (i % nws.Number == 0)
                     {
                         wordSwapResult.Append(nws.WordSwap);
                     }
                 });
+
                 result[i - 1] = new NumWordSwap() { Number = i, WordSwap = (wordSwapResult.Length == 0) ? i.ToString() : wordSwapResult.ToString() };
             }
         }
