@@ -7,9 +7,9 @@
  */
 namespace NumWordSwap_Api.Models
 {
-	public record NumWordSwap
+	public record MultipleWordSwap
     {
-        public int Number { get; set; }
+        public int Multiple { get; set; }
         public string? WordSwap { get; set; }
     }
 }

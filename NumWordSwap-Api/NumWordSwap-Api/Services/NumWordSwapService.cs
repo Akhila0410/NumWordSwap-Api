@@ -20,35 +20,35 @@ namespace NumWordSwap_Api.Services
             _logger = logger;
 		}
 
-        public IEnumerable<NumWordSwap> GetSwappedNumWords(NumWordSwapRequest request)
+        public IEnumerable<NumberSwapedWord> GetSwappedNumWords(NumWordSwapRequest request)
         {
 
             // Null Request and Invalid Max Number validation
             if (request == null || request.MaxNumber <= 0)
             {
-                return new List<NumWordSwap>();
+                return new List<NumberSwapedWord>();
             }
 
-            var result = new NumWordSwap[request.MaxNumber];
+            var result = new NumberSwapedWord[request.MaxNumber];
             try
             {
                 // If No NumWordSwaps sent - The below condition is added to avoid validating the (request.NumWordSwaps?.Count == 0)
                 //                           condition for every number.
-                if (request.NumWordSwaps?.Count == 0)
+                if (null == request.MultipleWordSwaps || request.MultipleWordSwaps.Count == 0)
                 {
                     for (var i = 1; i <= request.MaxNumber; i++)
                     {
-                        result[i - 1] = new NumWordSwap() { Number = i, WordSwap = i.ToString() };
+                        result[i - 1] = new NumberSwapedWord() { Number = i, SwappedWord = i.ToString() };
                     }
                 }
-                else
+                else if(request.MultipleWordSwaps.Count > 0)
                 {
                     // If NumWordSwaps Present
                     for (var i = 1; i <= request.MaxNumber; i++)
                     {
-                        var numWordSwaps = !!request.SortedOrder ? request.NumWordSwaps?.OrderBy(nws => nws.Number).ToList() : request.NumWordSwaps;
+                        var multipleWordSwaps = !!request.SortedOrder ? request.MultipleWordSwaps?.OrderBy(mws => mws.Multiple).ToList() : request.MultipleWordSwaps;
 
-                        result[i - 1] = new NumWordSwap() { Number = i, WordSwap = GetSwapWord(i, numWordSwaps) };
+                        result[i - 1] = new NumberSwapedWord() { Number = i, SwappedWord = GetSwapWord(i, multipleWordSwaps) };
                     }
                 }
             }
@@ -61,11 +61,12 @@ namespace NumWordSwap_Api.Services
             return result;
         }
 
-        private string GetSwapWord(int currentNumber, List<NumWordSwap> numWordSwaps) {
+        public string GetSwapWord(int currentNumber, List<MultipleWordSwap>? multipleWordSwaps) {
+            if (multipleWordSwaps == null || multipleWordSwaps.Count == 0) return currentNumber.ToString();
             var wordSwapResult = new StringBuilder();
-            numWordSwaps?.ForEach(nws =>
+            multipleWordSwaps?.ForEach(nws =>
             {
-                if (currentNumber % nws.Number == 0)
+                if (currentNumber % nws.Multiple == 0)
                 {
                     wordSwapResult.Append(nws.WordSwap + " ");
                 }

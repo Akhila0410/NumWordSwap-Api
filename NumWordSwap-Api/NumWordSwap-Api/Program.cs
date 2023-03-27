@@ -34,7 +34,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddSwaggerGen();
 // Register the Swagger services
-builder.Services.AddSwaggerDocument();
+builder.Services.AddSwaggerDocument(settings => settings.Title = "Num Word Swap Application Api");
 
 var app = builder.Build();
 
@@ -42,7 +42,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseOpenApi();
-    app.UseSwaggerUi3();
+    app.UseSwaggerUi3(c => c.DocumentTitle = "Num Word Swap Application Api");
 }
 
 app.UseHttpsRedirection();

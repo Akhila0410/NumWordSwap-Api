@@ -26,7 +26,7 @@ public class NumWordSwapController : ControllerBase
 
     [HttpPost]
     [Route("getswappednumwords")]
-    public IEnumerable<NumWordSwap> GetSwappedNumWords(NumWordSwapRequest request)
+    public IEnumerable<NumberSwapedWord> GetSwappedNumWords(NumWordSwapRequest request)
     {
         _logger.LogInformation($"Received NumWordSwap Request: {request.ToString()}");
         return _nwsService.GetSwappedNumWords(request);

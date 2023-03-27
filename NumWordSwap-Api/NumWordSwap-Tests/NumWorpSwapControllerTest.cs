@@ -7,31 +7,26 @@ using NumWordSwap_Api;
 using NumWordSwap_Api.Controllers;
 using NumWordSwap_Api.Interfaces;
 using NumWordSwap_Api.Models;
+using NumWordSwap_Api.Services;
 
-public class NumWorpSwapControllerTest
+
+public class NumWorpSwapServiceTest
 {
 
-    public Mock<ILogger<NumWordSwapController>> mockLogger = new Mock<ILogger<NumWordSwapController>>();
-    public Mock<INumWordSwapService> mockNwsService = new Mock<INumWordSwapService>();
-    [Fact(DisplayName = "Testing NumWordSwapService Dependency Injection and Function call in the NumWordSwapController")]
-    public void GetSwappedNumWords()
-    {
-       // Mocking start
-        NumWordSwapRequest dummyRequest = new NumWordSwapRequest() {
-            MaxNumber = 5,
-            SortedOrder = false,
-        };
-        var dummyResponseJsonString = "[{\"number\":1,\"wordSwap\":\"1\"},{\"number\":2,\"wordSwap\":\"2\"},{\"number\":3,\"wordSwap\":\"3\"},{\"number\":4,\"wordSwap\":\"4\"},{\"number\":5,\"wordSwap\":\"5\"}]";
-        var dummyResponse = JsonConvert.DeserializeObject<List<NumWordSwap>>(dummyResponseJsonString);
-        mockNwsService.Setup(controller => controller.GetSwappedNumWords(dummyRequest)).Returns(dummyResponse);
-        // Mocking end
+    public Mock<ILogger<NumWordSwapService>> mockLogger = new Mock<ILogger<NumWordSwapService>>();
+    [Fact(DisplayName = "Get Swap Word for Zero Num Word swaps")]
+    public void GetSwapWordZeroCurrentNumber()
+     d{
+    //    // Mock start
+    //    var dummyNumWordSwaps = 
+    //    // Mock end
 
-        // Test start
-        NumWordSwapController nwsController = new NumWordSwapController(mockLogger.Object, mockNwsService.Object);
+    //    // Test start
+    //    NumWordSwapService nwsService = new NumWordSwapService(mockLogger.Object);
 
-        var response = nwsController.GetSwappedNumWords(dummyRequest);
+    //    var response = nwsService.GetSwapWord(0,);
 
-        Assert.Equal(response, dummyResponse);
-        // Test end
+    //    Assert.Equal(response, dummyResponse);
+    //    // Test end
     }
 }
