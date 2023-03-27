@@ -20,6 +20,7 @@ namespace NumWordSwap_Api.Services
             _logger = logger;
 		}
 
+        // This method takes a NumWordSwapRequest and returns the List of Numbers with swapped words
         public IEnumerable<NumberSwapedWord> GetSwappedNumWords(NumWordSwapRequest request)
         {
 
@@ -61,12 +62,13 @@ namespace NumWordSwap_Api.Services
             return result;
         }
 
+        // This method takes a number and apply all the multiple word swaps, returns the complete swap word.
         public string GetSwapWord(int currentNumber, List<MultipleWordSwap>? multipleWordSwaps) {
-            if (multipleWordSwaps == null || multipleWordSwaps.Count == 0) return currentNumber.ToString();
+            if (currentNumber == 0 || multipleWordSwaps == null || multipleWordSwaps.Count == 0) return currentNumber.ToString();
             var wordSwapResult = new StringBuilder();
             multipleWordSwaps?.ForEach(nws =>
             {
-                if (currentNumber % nws.Multiple == 0)
+                if (nws.Multiple > 0 && currentNumber % nws.Multiple == 0)
                 {
                     wordSwapResult.Append(nws.WordSwap + " ");
                 }
