@@ -5,7 +5,7 @@ Built an API to return Dynamic Fizz Buzz words by taking a Max Number, Multiple 
 
 ## Demo Video
 
-https://www.youtube.com/watch?v=jhUggBbS1qg
+https://share.vidyard.com/watch/NQUnnCwn8TtKYrCgz48c2b? 
 
 `curl --location --request POST 'https://localhost:7152/api/getswappednumwords' \
 --header 'Content-Type: application/json' \
