@@ -3,6 +3,10 @@
 ## Description
 Built an API to return Dynamic Fizz Buzz words by taking a Max Number, Multiple - Word Swap combinations and a Sorted Order Boolean value.
 
+## Demo Video
+
+https://www.youtube.com/watch?v=jhUggBbS1qg
+
 `curl --location --request POST 'https://localhost:7152/api/getswappednumwords' \
 --header 'Content-Type: application/json' \
 --data-raw '{
