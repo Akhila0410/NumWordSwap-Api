@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-# NumWordSwap-Api
-.Net 6.0 API for NumWordSwap App
-=======
 # Number Word Swaps - Api
 
 ## Description
@@ -51,4 +47,3 @@ Written 16 Unit Tests covering primarily the integration of Controller and the S
 ![alt text](/images/swagger-documentation-with-response.png)
 
 ![alt text](/images/Postman-testing.png)
->>>>>>> Stashed changes
